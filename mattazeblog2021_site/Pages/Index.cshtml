@@ -1,0 +1,37 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<section class="blogroll">
+    <h1 class="display-4">Welcome - Blog Roll Content</h1>
+
+    <article id="blog-1234">
+        <img height="300" src="@Model.LatestPost.ImageURL" />
+        <header>
+            <h2>Some post title</h2>
+            <p title="@Model.LatestPost.getPostTimeUTC()">posted: <span class="day-of-week">@Model.LatestPost.PostTime.ToString("dddd")</span> <time datetime="@Model.LatestPost.getPostTimeUTC()">@Model.LatestPost.PostTime.ToString("yyyy-MM-dd")</time></p>
+        </header> 
+        <div class="post-text">
+            <p>@Html.Raw(@Model.LatestPost.PostBody)</p>
+        </div>
+    </article>
+
+    <article id="blog-1234">
+        <img height="300" src="~/images/tilshift_torkey_bay_5440.jpg"
+             style="filter: invert(100%)"
+             />
+        <header>
+            <h2>Some post title</h2>
+            <p>posted: <span class="day-of-week"></span> <time datetime="2021-02-03">2021-02-03</time></p>
+        </header>
+        <div class="post-text">
+            <p>Her be some <strong>interesting</strong> text about the image or just rambling</p>
+        </div>
+    </article>
+</section>
+    
+<aside>
+    img random fake ad concept here
+</aside>

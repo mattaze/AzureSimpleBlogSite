@@ -1,0 +1,51 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - mattazeblog2021_site2</title>
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body>
+    <div id="canvas">
+        <header>
+            <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+                <div class="">
+
+                </div>
+                <a class="brand" href="/">
+                    <h1>MATT AZE</h1>
+                    <img height="100" src="~/images/Matt_Aze-logo-black.png" />
+                </a>
+
+                <ul>
+                    <li>
+                        <a href="/blog">Blog Roll</a>
+                    </li>
+                    <li>
+                        <a href="/projects">Projects</a>
+                    </li>
+                    <li>
+                        <a href="/images">Images</a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+        <div class="container">
+            <main role="main" class="pb-3">
+                @RenderBody()
+            </main>
+        </div>
+
+        <footer class="border-top footer text-muted">
+            <div class="container">
+                &copy; 2021 - mattazeblog2021_site - <a href="/Privacy">Privacy</a>
+            </div>
+        </footer>
+    </div>
+
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>
