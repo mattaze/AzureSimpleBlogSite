@@ -67,19 +67,23 @@ html {
   min-height: 100%;
 }
 
-/*
+body {
+    margin: 0;
+}
 
-body {*/
-  /* Margin bottom by footer height */
-  /*margin-bottom: 60px;
+/**/
+
+/*body {
+   Margin bottom by footer height 
+  margin-bottom: 60px;
 }
 .footer {
   position: absolute;
   bottom: 0;
   width: 100%;
   white-space: nowrap;
-  line-height: 60px;*/ /* Vertically center the text there */
-/*}*/
+  line-height: 60px;  Vertically center the text there 
+}*/
 
 #canvas {
     margin: 40px auto;

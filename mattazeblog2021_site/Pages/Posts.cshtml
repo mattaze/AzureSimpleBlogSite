@@ -1,0 +1,18 @@
+﻿@page "{title}"
+@model mattazeblog2021_site.Pages.PostsModel
+@{
+}
+
+<section class="blogroll">
+    <article id="blog-1234">
+        <img height="300" src="@("/PostImages/" + Model.PostItem.ImageURL)" />
+        <header>
+            <h2>Some post title</h2>
+            <p title="@Model.PostItem.getPostTimeUTC()">posted: <span class="day-of-week">@Model.PostItem.PostTime.ToString("dddd")</span> <time datetime="@Model.PostItem.getPostTimeUTC()">@Model.PostItem.PostTime.ToString("yyyy-MM-dd")</time></p>
+            <p> project / tags</p>
+        </header>
+        <div class="post-text">
+            <p>@Html.Raw(@Model.PostItem.PostBody)</p>
+        </div>
+    </article>
+</section>

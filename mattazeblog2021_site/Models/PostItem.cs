@@ -16,6 +16,14 @@ namespace mattazeblog2021_site.Models
         public string Tags { get; set; }
         public DateTime PostTime { get; set; }
 
+        public string Project { 
+            get { return PartitionKey; } 
+            set { PartitionKey = value; } 
+        }
+        public string PostName {
+            get { return RowKey; }
+        }
+
         public string getPostTimeUTC ()
         {
             return PostTime.ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ss.fffZ");
