@@ -69,6 +69,7 @@ html {
 
 body {
     margin: 0;
+    color: #0f0a5e;
 }
 
 /**/
@@ -128,4 +129,21 @@ header nav li a {
 
     header nav li a:hover {
         background-color: #ccb1dc
+    }
+
+nav .brand {
+    font-family: Consolas, Sans-Serif;
+    text-decoration: none;
+}
+    nav .brand h1 {
+        font-size: xx-large;
+        margin: 0;
+    }
+        nav .brand h1:visited {
+            color: inherit;
+            text-decoration: none;
+        }
+
+    nav .brand img {
+        height: 1.5em;
     }
