@@ -69,7 +69,13 @@ html {
 
 body {
     margin: 0;
-    color: #0f0a5e;
+    color: #2c0a5e;
+    font-family: Consolas, monospace;
+    min-height: 100%
+}
+
+circle {
+    fill: #123456;
 }
 
 /**/
@@ -86,12 +92,23 @@ body {
   line-height: 60px;  Vertically center the text there 
 }*/
 
+:root {
+    --pad-value: 40px;
+    --margin-value: 40px;
+}
+
 #canvas {
-    margin: 40px auto;
-    padding: 40px 40px 0px;
+    margin: var(--pad-value) auto;
+    padding: var(--margin-value) var(--margin-value) 0px;
     max-width: 1024px;
     border: 1px #ccb1dc solid;
     box-sizing: content-box;
+    min-height: calc(100vh - (var(--pad-value) * 3));
+}
+
+footer {
+    position: absolute;
+    bottom: 40px
 }
 
 /*@media only screen and (max-width: 1460px) {
@@ -132,9 +149,13 @@ header nav li a {
     }
 
 nav .brand {
-    font-family: Consolas, Sans-Serif;
     text-decoration: none;
+    display: table;
 }
+    nav .brand span {
+        display:table-cell;
+        vertical-align: middle;
+    }
     nav .brand h1 {
         font-size: xx-large;
         margin: 0;
@@ -146,4 +167,29 @@ nav .brand {
 
     nav .brand img {
         height: 1.5em;
+    }
+
+.row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+    flex-basis: 100%;
+    flex: 1;
+}
+
+
+/* POST style*/
+.post-image {
+    height: 300px;
+}
+    .post-image img {
+        height: 100%;
+        margin: auto;
+        display: block;
     }

@@ -1,0 +1,78 @@
+﻿@page
+@model mattazeblog2021_site.Pages.EditPostModel
+@{
+}
+
+<section class="blogroll">
+    <h1 class="display-4">Create Or Edit Post ✍</h1>
+    <nav class="radio-buttons radio-vertical">
+        <label for="display-edit" title="display edit only"><input type="radio" name="display-mode" id="display-edit" />  ✍</label>
+        <label for="display-both" title="display edit and preview"><input type="radio" name="display-mode" id="display-both" checked /> ✍🔍</label>
+        <label for="display-preview" title="display preview only"><input type="radio" name="display-mode" id="display-preview" /> 🔍</label>
+    </nav>
+
+    <button type="submit" form="edit-post-form">Save</button>
+    <hr />
+
+    <div class="flex-wrapper">
+        <div class="row">
+
+            <article class="column">
+                <form id="edit-post-form">
+                    <div>
+                        <label for="edit-mainimage">Main Image 📸</label><input type="file" id="edit-mainimage" accept="image/*" name="main-image" onchange="loadMainImage(event)" />
+                    </div>
+                    <div>
+                        <label  for="edit-title">Title </label><input type="text" id="edit-title" name="title" />
+                    </div>
+                    <div>
+                        <label for="edit-posttime">Posted </label><input type="date" id="edit-posttime" name="posttime"value="@DateTime.Today.ToString("yyyy-MM-dd")"/>
+                    </div>
+                    <div>
+                        <label for="edit-tags">Tags</label> <input type="text" id="edit-tags" />
+                    </div>
+                    <div>
+                        <textarea id="body" name="body" style="width: 100%; box-sizing: border-box; resize: vertical; height: 300px;"></textarea>
+                    </div>
+                    <hr />
+                    <button>Save</button>
+                </form>
+            </article>
+
+            <article class="column">
+                <h3 id="preview-url">url preview</h3>
+                <div class="post-image" style="height:300px">
+                    <img id="preview-image"/>
+                </div>
+                <header>
+                    <h2 id="preview-title">title preview</h2>
+                    <p title="full utc time todo">posted: <span class="day-of-week">Monday</span> <time datetime="">2021-01-01</time></p>
+                    <p> tags preview</p>
+                </header>
+                <div class="post-text">
+                    <p id="preview-body">body preview</p>
+                </div>
+            </article>
+        </div>
+    </div>
+</section>
+
+<aside>
+    img random fake ad concept here
+</aside>
+
+<script>
+    function TitleChange(evt) {
+        document.getElementById("preview-title").textContent = event.target.value === "" ? "title preview" : event.target.value;
+    }
+
+    document.getElementById("edit-title").addEventListener("input", TitleChange);
+
+
+    document.getElementById("edit-title").addEventListener("input", TitleChange);
+
+    function loadMainImage(evt) {
+        var image = document.getElementById('preview-image');
+        image.src = URL.createObjectURL(event.target.files[0]);
+    }
+</script>
