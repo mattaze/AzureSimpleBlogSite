@@ -16,12 +16,26 @@ namespace mattazeblog2021_site.Models
         public string Tags { get; set; }
         public DateTime PostTime { get; set; }
 
+        /// <summary>
+        /// Partition Key value
+        /// </summary>
         public string Project { 
             get { return PartitionKey; } 
             set { PartitionKey = value; } 
         }
+
+        /// <summary>
+        /// Row Key value
+        /// </summary>
         public string PostName {
             get { return RowKey; }
+        }
+
+        /// <summary>
+        /// Partition and Row keys
+        /// </summary>
+        public string PostId {
+            get { return PartitionKey + "_-_" + RowKey; }
         }
 
         public string getPostTimeUTC ()

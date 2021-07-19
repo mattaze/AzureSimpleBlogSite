@@ -9,8 +9,15 @@ namespace mattazeblog2021_site.Pages
 {
     public class EditPostModel : PageModel
     {
-        public void OnGet()
-        {
+        [BindProperty]
+        public Models.PostItem PostItem { get; set; }
+
+        public void OnGet() {
         }
+
+        public void OnPost() {
+
+        }
+
     }
 }
