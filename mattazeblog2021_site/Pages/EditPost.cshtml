@@ -1,0 +1,118 @@
+﻿@page
+@model mattazeblog2021_site.Pages.EditPostModel
+@{
+}
+
+<section class="blogroll">
+    <h1 class="display-4">Create Or Edit Post ✍</h1>
+    <nav class="radio-buttons radio-vertical">
+        <form name="display-mode">
+            <label for="display-edit" title="display edit only"><input type="radio" name="display-mode" id="display-edit" value="edit"/>  ✍</label>
+            <label for="display-both" title="display edit and preview"><input type="radio" name="display-mode" id="display-both" checked value="both" /> ✍🔍</label>
+            <label for="display-preview" title="display preview only"><input type="radio" name="display-mode" id="display-preview" value="preview" /> 🔍</label>
+        </form>
+    </nav>
+
+    <button type="submit" form="edit-post-form">Save</button>
+    <hr />
+
+    <div class="flex-wrapper">
+        <div class="row">
+
+            <article id="edit-pane" class="column">
+                <form name="edit-post-form" id="edit-post-form" method="post">
+                    <div>
+                        <label for="edit-mainimage">Main Image 📸</label><input type="file" id="edit-mainimage" accept="image/*" name="main-image" onchange="loadMainImage(event)" />
+                    </div>
+                    <div>
+                        <label  for="edit-title">Title </label><input type="text" id="edit-title" name="title" value="@Model.PostItem.Title"/>
+                    </div>
+                    <div>
+                        <label for="edit-posttime">Posted </label><input type="date" id="edit-posttime" name="posttime"value="@DateTime.Today.ToString("yyyy-MM-dd")"/>
+                    </div>
+                    <div>
+                        <label for="edit-tags">Tags</label> <input type="text" id="edit-tags" name="tags"/>
+                    </div>
+                    <div>
+                        <button type="button" onclick="updatePreview(event, 'edit-body', 'preview-body')">Preview Body</button>
+                        <small>Body can be written in html with img embed and use classes left/right for blocking image</small>
+                        <textarea id="edit-body" name="postbody" style="width: 100%; box-sizing: border-box; resize: vertical; height: 300px;"></textarea>
+                    </div>
+                    <hr />
+                    <button type="submit">Save</button>
+                </form>
+            </article>
+
+            <article id="preview-pane" class="column">
+                <h3 id="preview-url">url preview</h3>
+                <div class="post-image" style="height:300px">
+                    <img id="preview-image"/>
+                </div>
+                <header>
+                    <h2 id="preview-title">title preview</h2>
+                    <p title="full utc time todo">posted: <span class="day-of-week">Monday</span> <time datetime="">2021-01-01</time></p>
+                    <p> tags preview</p>
+                </header>
+                <div class="post-text">
+                    <p id="preview-body">body preview</p>
+                </div>
+            </article>
+        </div>
+    </div>
+</section>
+
+<aside>
+    img random fake ad concept here
+</aside>
+
+<script>
+    function ChangeDisplayMode(mode) {
+        var preview = document.getElementById("preview-pane");
+        var edit = document.getElementById("edit-pane");
+
+        if (mode == "edit") {
+            preview.style.display = "none";
+            edit.style.display = "";
+        }
+        else if (mode == "both") {
+            preview.style.display = "";
+            edit.style.display = "";
+        }
+        else if (mode == "preview") {
+            preview.style.display = "";
+            edit.style.display = "none";
+        }
+    }
+
+    function BindDisplayMode() {
+        //var modes = document.querySelectorAll('[name="display-mode"]');
+        //modes.forEach(box =>
+        //    box.addEventListener("click", () => box.classList.toggle("red"))
+        //)
+        document.forms["display-mode"]["display-mode"].forEach(mode => {
+            mode.addEventListener('change', (evt) => {
+                ChangeDisplayMode(document.forms["display-mode"]["display-mode"].value);
+            })
+        });
+    }
+    BindDisplayMode();
+
+    function TitleChange(evt) {
+        document.getElementById("preview-title").textContent = event.target.value === "" ? "title preview" : event.target.value;
+    }
+
+    document.getElementById("edit-title").addEventListener("input", TitleChange);
+
+    function loadMainImage(evt) {
+        var image = document.getElementById('preview-image');
+        image.src = URL.createObjectURL(event.target.files[0]);
+    }
+
+    //look into key press option - to trigger body update
+
+    function updatePreview(evt, source_id, target_id) {
+        var source_elm = document.getElementById(source_id);
+        var target_elm = document.getElementById(target_id);
+        target_elm.innerHTML = source_elm.value;
+    }
+</script>

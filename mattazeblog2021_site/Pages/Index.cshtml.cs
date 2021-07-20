@@ -11,12 +11,15 @@ namespace mattazeblog2021_site.Pages
     public class IndexModel : PageModel
     {
         private readonly ILogger<IndexModel> _logger;
+        private readonly CMServices.AzureStorage CMS;
+
         public Models.PostItem LatestPost;
+        public string ConStr;
 
-
-        public IndexModel(ILogger<IndexModel> logger)
+        public IndexModel(ILogger<IndexModel> logger, CMServices.AzureStorage cms)
         {
             _logger = logger;
+            CMS = cms;
         }
 
         public void OnGet()

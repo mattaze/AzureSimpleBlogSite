@@ -24,6 +24,9 @@ namespace mattazeblog2021_site
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddRazorPages();
+            services.AddControllers();
+
+            services.AddSingleton<CMServices.AzureStorage>(new CMServices.AzureStorage(Configuration.GetConnectionString("AzureStorageConnectionString")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -50,6 +53,7 @@ namespace mattazeblog2021_site
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapRazorPages();
+                endpoints.MapControllers();
             });
         }
     }
