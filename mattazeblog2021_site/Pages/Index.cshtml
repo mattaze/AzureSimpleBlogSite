@@ -1,25 +1,39 @@
 ﻿@page
 @model IndexModel
-@{
-    ViewData["Title"] = "Home page";
-}
+@{ ViewData["Title"] = "Home page"; }
 
 <section class="blogroll">
     <h1 class="display-4">Welcome - Blog Roll Content</h1>
 
     <article id="@Model.LatestPost.PostId">
-        <img height="300" src="@Model.LatestPost.ImageURL" />
+        @*<img class="post-main-image center" src="@Model.LatestPost.ImageURL" />*@
+        <img class="post-main-image center" src="https://picsum.photos/600/300" />
         <header>
             <h2>Some post title</h2>
             <p title="@Model.LatestPost.getPostTimeUTC()">posted: <span class="day-of-week">@Model.LatestPost.PostTime.ToString("dddd")</span> <time datetime="@Model.LatestPost.getPostTimeUTC()">@Model.LatestPost.PostTime.ToString("yyyy-MM-dd")</time></p>
             <p> project / tags</p>
-        </header> 
+        </header>
         <div class="post-text">
             <p>@Html.Raw(@Model.LatestPost.PostBody)</p>
+
+        </div>
+        <div>
+            <div style="display:table">
+                <img src="https://picsum.photos/200/300" style="float:left; margin:5px;" />
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut vel sapien vel tortor elementum sagittis.
+                    Phasellus risus urna, posuere a mauris ultricies, faucibus finibus odio.
+                    Cras pellentesque eleifend sapien ut dictum. Morbi eget ultricies nibh, sed ultrices justo.
+                    Praesent cursus vulputate fringilla. Duis ornare ut enim vel efficitur. Sed consectetur, ligula vel
+                    faucibus sodales, sem velit rhoncus ante, at volutpat dolor nisl sed nisl. Morbi orci metus, maximus
+                    eu hendrerit vitae, dapibus eu lectus. Phasellus diam libero, volutpat eu ornare id, congue vel erat.
+                    Nullam vestibulum magna vitae dui maximus fringilla.
+                </p>
+            </div>
         </div>
     </article>
 </section>
-    
+
 <aside>
     img random fake ad concept here
 </aside>

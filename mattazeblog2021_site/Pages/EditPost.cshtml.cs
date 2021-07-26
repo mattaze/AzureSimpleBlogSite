@@ -13,6 +13,7 @@ namespace mattazeblog2021_site.Pages
         public Models.PostItem PostItem { get; set; }
 
         public void OnGet() {
+            PostItem = new Models.PostItem();
         }
 
         public void OnPost() {

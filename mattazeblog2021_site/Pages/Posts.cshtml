@@ -5,9 +5,7 @@
 
 <section class="blogroll">
     <article id="@Model.PostItem.PostId">
-        <div class="post-image">
-            <img src="@("/PostImages/" + Model.PostItem.ImageURL)" />
-        </div>
+        <img class="post-main-image center" src="@("/PostImages/" + Model.PostItem.ImageURL)" />
         <header>
             <h2>Some post title</h2>
             <p title="@Model.PostItem.getPostTimeUTC()">posted: <span class="day-of-week">@Model.PostItem.PostTime.ToString("dddd")</span> <time datetime="@Model.PostItem.getPostTimeUTC()">@Model.PostItem.PostTime.ToString("yyyy-MM-dd")</time></p>

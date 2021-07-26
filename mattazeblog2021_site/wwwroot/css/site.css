@@ -185,11 +185,12 @@ nav .brand {
 
 
 /* POST style*/
-.post-image {
-    height: 300px;
+.post-main-image {
+    max-height: 300px;
+    max-width: 100%;
 }
-    .post-image img {
-        height: 100%;
-        margin: auto;
-        display: block;
-    }
+
+img.center {
+    display: block;
+    margin: auto;
+}
