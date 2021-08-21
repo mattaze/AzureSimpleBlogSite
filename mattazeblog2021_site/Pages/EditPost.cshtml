@@ -20,9 +20,9 @@
         <div class="row">
 
             <article id="edit-pane" class="column">
-                <form name="edit-post-form" id="edit-post-form" method="post">
+                <form name="edit-post-form" id="edit-post-form" method="post" enctype="multipart/form-data">
                     <div>
-                        <label for="edit-mainimage">Main Image 📸</label><input type="file" id="edit-mainimage" accept="image/*" name="main-image" onchange="loadMainImage(event)" />
+                        <label for="edit-mainimage">Main Image 📸</label><input type="file" id="edit-mainimage" accept="image/*" name="mainimage" onchange="loadMainImage(event)" />
                     </div>
                     <div>
                         <label  for="edit-title">Title </label><input type="text" id="edit-title" name="title" value="@Model.PostItem.Title"/>
@@ -45,9 +45,9 @@
 
             <article id="preview-pane" class="column">
                 <h3 id="preview-url">url preview</h3>
-                <img id="preview-image" class="post-main-image center" />
+                <img id="preview-image" class="post-main-image center" src="@Model.MainImage.GetDataURL()" />
                 <header>
-                    <h2 id="preview-title">title preview</h2>
+                    <h2 id="preview-title">@Model.PostItem.Title</h2>
                     <p title="full utc time todo">posted: <span class="day-of-week">Monday</span> <time datetime="">2021-01-01</time></p>
                     <p> tags preview</p>
                 </header>

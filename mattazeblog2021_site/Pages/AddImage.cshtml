@@ -1,0 +1,44 @@
+﻿@page
+@model mattazeblog2021_site.Pages.AddImageModel
+@{
+}
+
+
+<article id="edit-pane" class="column">
+    <form name="edit-post-form" id="edit-post-form" method="post" enctype="multipart/form-data">
+        <div>
+            <label for="edit-images">Add Images</label><input type="file" id="edit-images" accept="image/*" multiple name="images" onchange="loadImages(event)" />
+        </div>
+        <hr />
+        <button type="submit">Save</button>
+    </form>
+</article>
+
+<article id="preview-images" class="column">
+</article>
+
+
+<script>
+    function loadImages(evt) {
+        var preview_area = document.getElementById('preview-images');
+
+        for (let i = 0; i < event.target.files.length; i++) {
+            let img = document.createElement("img");
+            img.src = URL.createObjectURL(event.target.files[i]);
+
+            let title = document.createElement("h2");
+            title.textContent = event.target.files[i].name;
+
+            preview_area.appendChild(img);
+            preview_area.appendChild(title);
+        }
+    }
+
+    //look into key press option - to trigger body update
+
+    function updatePreview(evt, source_id, target_id) {
+        var source_elm = document.getElementById(source_id);
+        var target_elm = document.getElementById(target_id);
+        target_elm.innerHTML = source_elm.value;
+    }
+</script>

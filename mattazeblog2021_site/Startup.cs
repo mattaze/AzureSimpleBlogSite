@@ -26,6 +26,8 @@ namespace mattazeblog2021_site
             services.AddRazorPages();
             services.AddControllers();
 
+            //from config, get which storage service is used, and set that as the service to set for IStorageService
+
             services.AddSingleton<CMServices.AzureStorage>(new CMServices.AzureStorage(Configuration.GetConnectionString("AzureStorageConnectionString")));
         }
 

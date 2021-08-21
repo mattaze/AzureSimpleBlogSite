@@ -192,5 +192,5 @@ nav .brand {
 
 img.center {
     display: block;
-    margin: auto;
+    margin-inline: auto;
 }

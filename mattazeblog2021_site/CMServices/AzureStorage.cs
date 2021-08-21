@@ -14,9 +14,13 @@ namespace mattazeblog2021_site.CMServices {
         private readonly string BlobContainerNameRAW = BlobContainerName + "raw";
         private readonly string PostItemsTableName = "basicblogposts";
 
+        private double ImageSizeSmall = 100;
+        private double ImageSizeNormal = 300;
+        private string ImageRawFolder = "raw";
+        private string ImageFolderSmall = "small";
+
         public AzureStorage(string storageConnectionString) {
             StorageConnectionString = storageConnectionString;
-
         }
 
         private void CreateLocationsIfNotExists() {
@@ -36,6 +40,9 @@ namespace mattazeblog2021_site.CMServices {
         private BlobContainerClient GetBlobContainerClient() {
             return new BlobContainerClient(StorageConnectionString, BlobContainerNameRAW);
         }
+        public PostItem LatestPost() {
+            return null;
+        }
 
         public PostItem GetPost(string partitionKey, string rowKey) {
             var tableClient = GetTableClient();
@@ -45,15 +52,19 @@ namespace mattazeblog2021_site.CMServices {
             return item;
         }
 
-        public PostItem Latest() {
-            return null;
+        public PostItem PutPost(PostItem post) {
+            var tableClient = GetTableClient();
+            var insertOrMerge = TableOperation.InsertOrReplace(post);
+            var result = tableClient.Execute(insertOrMerge);
+            var updatedPost = result.Result as PostItem;
+            return updatedPost;
         }
 
         public Models.PostImage GetImage(string blobName) {
             var containerClient = GetBlobContainerClient();
             var blobClient = containerClient.GetBlobClient(blobName);
 
-            if(blobClient.Exists() == false) {
+            if (blobClient.Exists() == false) {
                 return null;
             }
 
@@ -66,6 +77,17 @@ namespace mattazeblog2021_site.CMServices {
             };
 
             return postImage;
+        }
+
+        public bool PutImage(PostImage postImage) {
+            var containerClient = GetBlobContainerClient();
+            var blobClient = containerClient.GetBlobClient(postImage.Name);
+
+            var response = blobClient.Upload(postImage.Data, false);
+
+            var version = response.Value.VersionId;
+
+            return true;
         }
     }
 }
